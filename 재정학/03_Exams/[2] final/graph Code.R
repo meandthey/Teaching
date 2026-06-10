@@ -36,3 +36,60 @@ axis(2,
 box(col = "grey50")
 
 dev.off()
+
+
+
+
+####  
+png("NIT_blank.png", width = 1000, height = 1000, res = 150)
+
+par(
+  mar = c(5, 5, 2, 2),
+  mgp = c(3, 1, 0)
+)
+
+plot(
+  NA,
+  xlim = c(0, 800),
+  ylim = c(0, 800),
+  xlab = "E(스스로 벌어들인 소득)",
+  ylab = "Y(처분가능소득)",
+  cex.lab = 1.5,
+  axes = FALSE,
+  type = "n",
+  xaxs = "i",
+  yaxs = "i",
+  asp = 1      # 격자를 정사각형으로
+)
+
+# 격자선
+abline(
+  v = seq(0, 800, by = 100),
+  col = "grey90",
+  lwd = 0.7
+)
+
+abline(
+  h = seq(0, 800, by = 100),
+  col = "grey90",
+  lwd = 0.7
+)
+
+# 축
+axis(
+  1,
+  at = seq(0, 800, by = 100),
+  cex.axis = 0.8
+)
+
+axis(
+  2,
+  at = seq(0, 800, by = 100),
+  las = 1,
+  cex.axis = 0.8
+)
+
+# 테두리
+box(col = "grey50")
+
+dev.off()
