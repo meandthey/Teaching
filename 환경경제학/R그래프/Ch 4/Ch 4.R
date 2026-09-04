@@ -1,6 +1,257 @@
+##### 55 page ##### New
+## =========================================================
+## 개방자원시장의 비효율성
+## AR = 9 - Q
+## MR = 9 - 2Q
+## AC = MC = 3
+## =========================================================
 
 
-##### 55 page #####
+## ===== 파라미터 =====
+P_int <- 9          # AR과 MR의 공통 y절편
+s_ar  <- 1          # AR 기울기
+s_mr  <- 2*s_ar     # MR 기울기 = AR 기울기의 2배
+
+AC <- 3
+MC <- 3
+
+
+## ===== 주요 교차점 =====
+
+# 사회적으로 효율적인 배의 수: MR = MC
+Q_star <- (P_int - MC) / s_mr    # = 3
+
+# 개방자원 균형: AR = AC
+Q_A <- (P_int - AC) / s_ar       # = 6
+
+# Q*에서 AR과 MC의 높이
+P_a <- P_int - s_ar * Q_star     # = 6
+P_b <- MC                          # = 3
+
+
+## ===== 좌표 준비 =====
+Qmax <- 7
+
+q <- seq(0, Qmax, length.out = 500)
+
+AR <- P_int - s_ar * q
+MR <- P_int - s_mr * q
+
+
+## ===== 그래프 설정 =====
+op <- par(no.readonly = TRUE)
+
+par(
+  mar = c(5, 6, 3.5, 2),
+  mgp = c(3, 1, 0),
+  las = 1
+)
+
+
+## ===== 빈 그래프 =====
+plot(
+  NA,
+  xlim = c(0, Qmax),
+  ylim = c(-5, 9.5),
+  xaxs = "i",
+  yaxs = "i",
+  xaxt = "n",
+  yaxt = "n",
+  
+  xlab = "배의 수 (Q)",
+  ylab = "수입, 비용",
+  main = "개방자원시장의 비효율성",
+  
+  cex.lab = 1.5,
+  cex.main = 1.5
+)
+
+
+## ===== 축 =====
+
+# x축
+axis(
+  1,
+  at = 0:7,
+  labels = 0:7,
+  cex.axis = 1.2
+)
+
+# y축
+axis(
+  2,
+  at = seq(-5, 9, 1),
+  labels = seq(-5, 9, 1),
+  cex.axis = 1.1,
+  las = 1
+)
+
+
+## ===== AR =====
+lines(
+  q,
+  AR,
+  lwd = 2.5,
+  col = "steelblue"
+)
+
+
+## ===== MR =====
+lines(
+  q,
+  MR,
+  lwd = 2.5,
+  col = "steelblue3"
+)
+
+
+## ===== AC = MC =====
+abline(
+  h = AC,
+  lwd = 2.5,
+  col = "gray30"
+)
+
+
+## ===== 수직 점선 =====
+
+# Q* = 3
+abline(
+  v = Q_star,
+  lty = 3,
+  col = "gray50"
+)
+
+# Q^A = 6
+abline(
+  v = Q_A,
+  lty = 3,
+  col = "gray50"
+)
+
+
+## ===== Q*에서 a와 b =====
+
+# a : Q*=3에서 AR=6
+points(
+  Q_star,
+  P_a,
+  pch = 16,
+  cex = 1.1
+)
+
+# b : Q*=3에서 MC=3
+points(
+  Q_star,
+  P_b,
+  pch = 16,
+  cex = 1.1
+)
+
+
+## ===== a, b 라벨 =====
+
+text(
+  Q_star - 0.18,
+  P_a + 0.4,
+  "a",
+  cex = 1.3
+)
+
+text(
+  Q_star - 0.18,
+  P_b + 0.4,
+  "b",
+  cex = 1.3
+)
+
+
+## ===== 개방자원 균형점 표시 =====
+# Q=6에서 AR=AC=MC=3
+
+points(
+  Q_A,
+  AC,
+  pch = 16,
+  cex = 1.1
+)
+
+
+## ===== 곡선 라벨 =====
+
+# AR
+text(
+  5.0,
+  P_int - s_ar*5.0 + 0.35,
+  "AR",
+  col = "steelblue",
+  cex = 1.3
+)
+
+# MR
+text(
+  4.0,
+  P_int - s_mr*4.0 - 0.4,
+  "MR",
+  col = "steelblue3",
+  cex = 1.3
+)
+
+# AC = MC
+text(
+  6.35,
+  AC + 0.35,
+  "AC = MC",
+  col = "gray30",
+  cex = 1.3
+)
+
+
+## ===== Q*와 Q^A 표시 =====
+
+text(
+  Q_star,
+  -4.6,
+  expression(Q^"*"),
+  cex = 1.3
+)
+
+text(
+  Q_A,
+  -4.6,
+  expression(Q^A),
+  cex = 1.3
+)
+
+
+## ===== 범례 =====
+
+legend(
+  "topright",
+  bty = "n",
+  cex = 1.05,
+  
+  legend = c(
+    "AR (평균수입)",
+    "MR (한계수입)",
+    "AC = MC (평균/한계비용)"
+  ),
+  
+  lwd = 2.5,
+  
+  col = c(
+    "steelblue",
+    "steelblue3",
+    "gray30"
+  )
+)
+
+
+## ===== 그래프 설정 복원 =====
+par(op)
+
+
+##### 55 page ##### Old
 ## ===== 파라미터(원하는 값으로 바꿔도 모양 동일) =====
 P_int <- 10          # AR, MR의 y절편(수입곡선 절편)
 s_ar  <- 0.5         # AR 기울기 (P = P_int - s_ar * Q)
