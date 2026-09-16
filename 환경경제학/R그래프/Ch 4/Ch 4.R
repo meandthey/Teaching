@@ -26,7 +26,7 @@ Q_A <- (P_int - AC) / s_ar       # = 6
 
 # Q*에서 AR과 MC의 높이
 P_a <- P_int - s_ar * Q_star     # = 6
-P_b <- MC                          # = 3
+P_b <- MC                         # = 3
 
 
 ## ===== 좌표 준비 =====
@@ -52,7 +52,7 @@ par(
 plot(
   NA,
   xlim = c(0, Qmax),
-  ylim = c(-5, 9.5),
+  ylim = c(0, 9.5),       # y축을 0부터 시작
   xaxs = "i",
   yaxs = "i",
   xaxt = "n",
@@ -80,8 +80,8 @@ axis(
 # y축
 axis(
   2,
-  at = seq(-5, 9, 1),
-  labels = seq(-5, 9, 1),
+  at = 0:9,
+  labels = 0:9,
   cex.axis = 1.1,
   las = 1
 )
@@ -97,6 +97,7 @@ lines(
 
 
 ## ===== MR =====
+# MR이 0보다 작은 부분은 그래프 범위 밖이므로 표시되지 않음
 lines(
   q,
   MR,
@@ -191,7 +192,7 @@ text(
 # MR
 text(
   4.0,
-  P_int - s_mr*4.0 - 0.4,
+  P_int - s_mr*4.0 + 0.35,
   "MR",
   col = "steelblue3",
   cex = 1.3
@@ -208,17 +209,18 @@ text(
 
 
 ## ===== Q*와 Q^A 표시 =====
+# y축이 0부터 시작하므로 그래프 안쪽에 표시
 
 text(
   Q_star,
-  -4.6,
+  0.35,
   expression(Q^"*"),
   cex = 1.3
 )
 
 text(
   Q_A,
-  -4.6,
+  0.35,
   expression(Q^A),
   cex = 1.3
 )
